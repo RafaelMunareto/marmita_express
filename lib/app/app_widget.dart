@@ -34,7 +34,6 @@ class _AppWidgetState extends State<AppWidget> {
     });
   }
 
-  //já crio o inicio das rotas com o Flutter Modular e os temas centralizados
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(

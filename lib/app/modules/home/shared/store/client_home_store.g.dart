@@ -25,6 +25,38 @@ mixin _$ClientHomeStore on _ClientHomeStoreBase, Store {
     });
   }
 
+  late final _$totalPriceAtom =
+      Atom(name: '_ClientHomeStoreBase.totalPrice', context: context);
+
+  @override
+  double get totalPrice {
+    _$totalPriceAtom.reportRead();
+    return super.totalPrice;
+  }
+
+  @override
+  set totalPrice(double value) {
+    _$totalPriceAtom.reportWrite(value, super.totalPrice, () {
+      super.totalPrice = value;
+    });
+  }
+
+  late final _$cartsListAtom =
+      Atom(name: '_ClientHomeStoreBase.cartsList', context: context);
+
+  @override
+  List<Carts> get cartsList {
+    _$cartsListAtom.reportRead();
+    return super.cartsList;
+  }
+
+  @override
+  set cartsList(List<Carts> value) {
+    _$cartsListAtom.reportWrite(value, super.cartsList, () {
+      super.cartsList = value;
+    });
+  }
+
   late final _$_ClientHomeStoreBaseActionController =
       ActionController(name: '_ClientHomeStoreBase', context: context);
 
@@ -40,9 +72,33 @@ mixin _$ClientHomeStore on _ClientHomeStoreBase, Store {
   }
 
   @override
+  dynamic setTotalPrice(dynamic value) {
+    final _$actionInfo = _$_ClientHomeStoreBaseActionController.startAction(
+        name: '_ClientHomeStoreBase.setTotalPrice');
+    try {
+      return super.setTotalPrice(value);
+    } finally {
+      _$_ClientHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setCartList(dynamic value) {
+    final _$actionInfo = _$_ClientHomeStoreBaseActionController.startAction(
+        name: '_ClientHomeStoreBase.setCartList');
+    try {
+      return super.setCartList(value);
+    } finally {
+      _$_ClientHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-len: ${len}
+len: ${len},
+totalPrice: ${totalPrice},
+cartsList: ${cartsList}
     ''';
   }
 }

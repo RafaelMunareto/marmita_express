@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:marmita_express/app/modules/home/home_store.dart';
 import 'package:marmita_express/app/shared/utils/data/data.dart';
 import 'package:marmita_express/app/shared/utils/database/db_helper.dart';
 import 'package:marmita_express/app/shared/utils/database/db_model.dart';
@@ -15,31 +17,7 @@ class PopularItems extends StatefulWidget {
 }
 
 class _PopularItemsState extends State<PopularItems> {
-  DatabaseHelper? databaseHelper;
-
-  late Future<List<Carts>> cartsList;
-
-  double totalPrice = 0;
-
-  @override
-  void initState() {
-    super.initState();
-
-    databaseHelper = DatabaseHelper();
-    loadData();
-  }
-
-  loadData() async {
-    cartsList = databaseHelper!.getCarts();
-    List<Carts> carts = await cartsList;
-    double newTotalPrice = 0;
-    for (var order in carts) {
-      newTotalPrice += order.price * order.quantity;
-    }
-    setState(() {
-      totalPrice = newTotalPrice;
-    });
-  }
+  HomeStore store = Modular.get();
 
   @override
   Widget build(BuildContext context) {
@@ -147,35 +125,11 @@ class _PopularItemsState extends State<PopularItems> {
                                   var now = DateTime.now();
                                   var formatter = DateFormat('dd-MM-yyyy');
                                   String formattedDate = formatter.format(now);
-
-                                  setState(() {
-                                    databaseHelper!
-                                        .insert(Carts(
-                                            date: formattedDate,
-                                            price:
-                                                order.food!.price!.toDouble(),
-                                            food: order.food!.name.toString(),
-                                            restaurant: order.restaurant!.name
-                                                .toString(),
-                                            quantity: 1,
-                                            imageURL: order.food!.imageUrl
-                                                .toString()))
-                                        .then((value) {
-                                      if (kDebugMode) {
-                                        print('cart inserted. $value');
-                                      }
-                                    }).onError((error, stackTrace) {
-                                      if (kDebugMode) {
-                                        print('error: ' + error.toString());
-                                      }
-                                    });
-                                    loadData();
-                                  });
+                                  store.insertCarts(formattedDate, order);
                                 },
                                 icon: const Icon(
                                   Icons.add,
                                   size: 16.0,
-                                  color: Colors.white,
                                 ),
                               ),
                             ),

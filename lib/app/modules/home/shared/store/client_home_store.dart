@@ -1,3 +1,4 @@
+import 'package:marmita_express/app/shared/utils/database/db_model.dart';
 import 'package:mobx/mobx.dart';
 
 part 'client_home_store.g.dart';
@@ -10,4 +11,16 @@ abstract class _ClientHomeStoreBase with Store {
 
   @action
   setLen(value) => len = value;
+
+  @observable
+  double totalPrice = 0;
+
+  @action
+  setTotalPrice(value) => totalPrice = value;
+
+  @observable
+  List<Carts> cartsList = [];
+
+  @action
+  setCartList(value) => cartsList = value;
 }

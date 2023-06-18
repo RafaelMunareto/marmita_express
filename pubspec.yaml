@@ -19,6 +19,12 @@ dependencies:
   shared_preferences: 
   dio:
   intl: 
+  lottie: ^2.3.2
+  rflutter_alert: ^2.0.7
+  google_fonts: ^4.0.4
+  flutter_rating_bar: ^4.0.1
+  sqflite: ^2.2.8+4
+  flutter_stripe: ^9.2.0
 
 
 dev_dependencies:
@@ -45,5 +51,5 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/img/
+    - assets/images/
     - assets/icon/

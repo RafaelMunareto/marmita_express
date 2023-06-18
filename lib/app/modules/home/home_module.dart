@@ -7,7 +7,6 @@ class HomeModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => ClientHomeStore()),
-    Bind.lazySingleton((i) => ClientHomeStore()),
     Bind.lazySingleton((i) => HomeStore()),
   ];
 

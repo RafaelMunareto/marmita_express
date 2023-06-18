@@ -6,10 +6,8 @@ class ClientHomeStore = _ClientHomeStoreBase with _$ClientHomeStore;
 
 abstract class _ClientHomeStoreBase with Store {
   @observable
-  int value = 0;
+  int len = 0;
 
   @action
-  void increment() {
-    value++;
-  }
+  setLen(value) => len = value;
 }

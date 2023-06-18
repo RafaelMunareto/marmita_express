@@ -4,6 +4,7 @@ variables:
 
 scripts:
   mobx: flutter pub run build_runner watch --delete-conflicting-outputs
+  mobx_clean: flutter packages pub run build_runner clean
   chrome: flutter run -d chrome --web-renderer html --web-port 52230
   build_web: flutter build web --web-renderer html && scp -r .\build\web\* root@45.82.75.3:/home/munatask/public_html/
   build_windows: flutter build windows

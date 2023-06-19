@@ -14,8 +14,8 @@ class PaymentModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
-      child: (context, args) => const PaymentPage(
-        amount: '',
+      child: (context, args) => PaymentPage(
+        amount: args.data,
       ),
     ),
   ];

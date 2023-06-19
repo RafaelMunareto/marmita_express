@@ -113,7 +113,7 @@ class PaymentPageState extends State<PaymentPage> {
                                 ),
                               ),
                               Text(
-                                '\$${widget.amount}',
+                                'R\$ ${widget.amount}',
                                 style: GoogleFonts.cabin(
                                     fontSize: 36,
                                     letterSpacing: 1.5,
@@ -123,7 +123,7 @@ class PaymentPageState extends State<PaymentPage> {
                               InkWell(
                                 onTap: () {
                                   Modular.to.navigate('/cart/');
-                                  store.client.setTurn(true);
+                                  store.client.setTurn(false);
                                 },
                                 child: Container(
                                   height: 28,
@@ -149,10 +149,12 @@ class PaymentPageState extends State<PaymentPage> {
                         const SizedBox(
                           height: 20,
                         ),
-                        AnimatedToggleButton(
-                          isOn: store.client.turn,
-                          onToggle: store.togglePaymentMethod,
-                        ),
+                        Observer(builder: (_) {
+                          return AnimatedToggleButton(
+                            isOn: store.client.turn,
+                            onToggle: store.togglePaymentMethod,
+                          );
+                        })
                       ],
                     ),
                   ),
@@ -184,14 +186,13 @@ class PaymentPageState extends State<PaymentPage> {
                                   ),
                                   InkWell(
                                       onTap: () async {
-                                        setState(() {
-                                          store.client.setPayConfirm(false);
-                                        });
+                                        store.client.setPayConfirm(false);
+
                                         await makePayment(
                                           context,
                                           widget.amount,
-                                          "Payment Successful!",
-                                          "Your payment has been successfully processed.",
+                                          "Pagamento com sucesso!",
+                                          "Seu pagamento foi processado com sucesso.",
                                           AlertType.success,
                                           store.client.payConfirm,
                                           store.databaseHelper,

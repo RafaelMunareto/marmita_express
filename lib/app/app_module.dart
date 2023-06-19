@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marmita_express/app/modules/cart/cart_module.dart';
 import 'package:marmita_express/app/modules/contact/contact_module.dart';
 import 'package:marmita_express/app/modules/payment/payment_module.dart';
+import 'package:marmita_express/app/modules/restaurant/restaurant_module.dart';
 import 'package:marmita_express/app/shared/utils/pages/splash_page.dart';
 import 'package:marmita_express/app/shared/utils/repositories/localstorage/local_storage_interface.dart';
 import 'package:marmita_express/app/shared/utils/repositories/localstorage/local_storage_share.dart';
@@ -24,5 +25,6 @@ class AppModule extends Module {
     ModuleRoute('/cart', module: CartModule()),
     ModuleRoute('/contact', module: ContactModule()),
     ModuleRoute('/payment', module: PaymentModule()),
+    ModuleRoute('/restaurant', module: RestaurantModule()),
   ];
 }

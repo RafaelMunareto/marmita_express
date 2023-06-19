@@ -43,7 +43,7 @@ class CartPageState extends State<CartPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Cart',
+                    'Carrinho',
                     style: GoogleFonts.cabin(fontSize: 26),
                   )
                 ],
@@ -207,7 +207,7 @@ class CartPageState extends State<CartPage> {
                                         horizontal: 15,
                                       ),
                                       child: Text(
-                                        '\$${order.price}',
+                                        'R\$ ${order.price}',
                                         style: const TextStyle(
                                           fontSize: 15.5,
                                           fontWeight: FontWeight.bold,
@@ -274,7 +274,7 @@ class CartPageState extends State<CartPage> {
                                   fontSize: 17, fontWeight: FontWeight.w600),
                             ),
                             Text(
-                              '\$${store.client.totalPrice.toStringAsFixed(2)}',
+                              'R\$ ${store.client.totalPrice.toStringAsFixed(2)}',
                               style: GoogleFonts.cabin(
                                   fontSize: 17,
                                   color: Colors.green.shade700,

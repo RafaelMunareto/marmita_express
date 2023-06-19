@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marmita_express/app/modules/home/shared/widgets/rating_stars.dart';
 import 'package:marmita_express/app/shared/utils/data/data.dart';
@@ -11,11 +12,7 @@ class NearbyRestaurants extends StatelessWidget {
       children: restaurants.map((thisRestaurant) {
         return GestureDetector(
           onTap: () {
-            // Navigator.of(context).push(
-            //   MaterialPageRoute(
-            //       builder: (context) =>
-            //           RestaurantScreen(restaurant: thisRestaurant)),
-            // );
+            Modular.to.navigate('/restaurant/', arguments: thisRestaurant);
           },
           child: Container(
             height: 90,
@@ -93,7 +90,7 @@ class NearbyRestaurants extends StatelessWidget {
           padding:
               const EdgeInsets.only(left: 20, right: 20, top: 25, bottom: 10),
           child: Text(
-            'Nearby Restaurants',
+            'Restaurantes próximos',
             style: GoogleFonts.cabin(
               fontSize: 20,
               fontWeight: FontWeight.bold,

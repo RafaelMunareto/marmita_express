@@ -37,7 +37,7 @@ abstract class _ClientPaymentStoreBase with Store {
   setLen(value) => len = value;
 
   @observable
-  bool turn = false;
+  bool turn = true;
 
   @action
   setTurn(value) => turn = value;

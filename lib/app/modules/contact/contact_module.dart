@@ -14,8 +14,8 @@ class ContactModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
-      child: (context, args) => const ContactPage(
-        amount: '',
+      child: (context, args) => ContactPage(
+        amount: args.data,
       ),
     ),
   ];

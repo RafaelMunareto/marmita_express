@@ -24,7 +24,7 @@ class _PopularItemsState extends State<PopularItems> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22.0),
           child: Text(
-            'Popular Items',
+            'Items populares',
             style: GoogleFonts.cabin(
               fontSize: 20,
               fontWeight: FontWeight.bold,

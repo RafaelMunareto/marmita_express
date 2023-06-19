@@ -1,14 +1,17 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marmita_express/app/modules/cart/cart_module.dart';
+import 'package:marmita_express/app/modules/contact/contact_module.dart';
+import 'package:marmita_express/app/modules/payment/payment_module.dart';
 import 'package:marmita_express/app/shared/utils/pages/splash_page.dart';
-import 'package:marmita_express/app/shared/utils/utils/themes/theme_preferences.dart';
+import 'package:marmita_express/app/shared/utils/repositories/localstorage/local_storage_interface.dart';
+import 'package:marmita_express/app/shared/utils/repositories/localstorage/local_storage_share.dart';
 
 import 'modules/home/home_module.dart';
 
 class AppModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.singleton<ThemePreferences>((i) => ThemePreferences()),
+    Bind.singleton<ILocalStorage>((i) => LocalStorageShare()),
   ];
 
   @override
@@ -19,5 +22,7 @@ class AppModule extends Module {
     ),
     ModuleRoute('/home', module: HomeModule()),
     ModuleRoute('/cart', module: CartModule()),
+    ModuleRoute('/contact', module: ContactModule()),
+    ModuleRoute('/payment', module: PaymentModule()),
   ];
 }

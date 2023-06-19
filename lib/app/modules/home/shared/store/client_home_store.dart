@@ -23,4 +23,10 @@ abstract class _ClientHomeStoreBase with Store {
 
   @action
   setCartList(value) => cartsList = value;
+
+  @observable
+  List<Carts> filteredCarts = [];
+
+  @action
+  setFilteredCarts(value) => filteredCarts = value;
 }

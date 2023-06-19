@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marmita_express/app/shared/utils/repositories/localstorage/local_storage_interface.dart';
 import 'package:marmita_express/app/shared/utils/repositories/localstorage/local_storage_share.dart';
-import 'package:marmita_express/app/shared/utils/utils/themes/theme.dart';
+import 'package:marmita_express/app/shared/utils/reutilizaveis/themes/theme.dart';
 
 class AppWidget extends StatefulWidget {
   @override

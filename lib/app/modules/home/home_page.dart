@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:marmita_express/app/modules/home/home_store.dart';
 import 'package:marmita_express/app/modules/home/shared/widgets/nearby_restaurants.dart';
 import 'package:marmita_express/app/modules/home/shared/widgets/popular_items.dart';
+import 'package:marmita_express/app/modules/home/shared/widgets/search_widget.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -83,47 +84,7 @@ class HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 25,
-                      ),
-                      child: SizedBox(
-                        height: 38,
-                        child: TextFormField(
-                          controller: store.searchController,
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 14),
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.symmetric(
-                                vertical: 5.0, horizontal: 15),
-                            fillColor: const Color(0xFF3B3A3A),
-                            filled: true,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide: const BorderSide(width: 0.8),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide: BorderSide(
-                                width: 0.8,
-                                color: Theme.of(context).primaryColor,
-                              ),
-                            ),
-                            suffixIcon: const Icon(
-                              Icons.search,
-                              color: Colors.grey,
-                              size: 22,
-                            ),
-                            hintText: 'Procure restaurantes',
-                            hintStyle: GoogleFonts.cabin(
-                              fontSize: 14.5,
-                              color: Colors.white.withOpacity(.5),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    SearchWidget()
                   ],
                 ),
               ),

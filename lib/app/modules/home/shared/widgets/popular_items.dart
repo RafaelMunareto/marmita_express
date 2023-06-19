@@ -1,12 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:marmita_express/app/modules/home/home_store.dart';
 import 'package:marmita_express/app/shared/utils/data/data.dart';
-import 'package:marmita_express/app/shared/utils/database/db_helper.dart';
-import 'package:marmita_express/app/shared/utils/database/db_model.dart';
 import 'package:marmita_express/app/shared/utils/model/order.dart';
 
 class PopularItems extends StatefulWidget {

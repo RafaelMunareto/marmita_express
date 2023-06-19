@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marmita_express/app/shared/utils/utils/themes/constants.dart';
+import 'package:marmita_express/app/shared/utils/reutilizaveis/themes/constants.dart';
 
 ThemeData lightThemeData(BuildContext context) {
   return ThemeData.light().copyWith(

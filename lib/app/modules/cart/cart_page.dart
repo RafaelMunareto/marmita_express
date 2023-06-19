@@ -5,6 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marmita_express/app/modules/cart/cart_store.dart';
 import 'package:marmita_express/app/shared/utils/database/db_model.dart';
+import 'package:marmita_express/app/shared/utils/reutilizaveis/snackbar.dart';
 
 class CartPage extends StatefulWidget {
   final String title;
@@ -240,81 +241,85 @@ class CartPageState extends State<CartPage> {
                 ],
               ),
               child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 25,
-                  left: 16,
-                  right: 16,
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          'Delivery Time:',
-                          style: GoogleFonts.cabin(
-                              fontSize: 17, fontWeight: FontWeight.w600),
+                  padding: const EdgeInsets.only(
+                    top: 25,
+                    left: 16,
+                    right: 16,
+                  ),
+                  child: Observer(builder: (_) {
+                    return Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              'Tempo de Entrega:',
+                              style: GoogleFonts.cabin(
+                                  fontSize: 17, fontWeight: FontWeight.w600),
+                            ),
+                            Text(
+                              store.client.deliveryTime.toString() + ' min',
+                              style: GoogleFonts.cabin(
+                                  fontSize: 17, fontWeight: FontWeight.w600),
+                            ),
+                          ],
                         ),
-                        Text(
-                          store.client.deliveryTime.toString() + ' min',
-                          style: GoogleFonts.cabin(
-                              fontSize: 17, fontWeight: FontWeight.w600),
+                        const SizedBox(height: 12.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              'Custo Total:',
+                              style: GoogleFonts.cabin(
+                                  fontSize: 17, fontWeight: FontWeight.w600),
+                            ),
+                            Text(
+                              '\$${store.client.totalPrice.toStringAsFixed(2)}',
+                              style: GoogleFonts.cabin(
+                                  fontSize: 17,
+                                  color: Colors.green.shade700,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ],
                         ),
+                        const SizedBox(height: 20.0),
+                        Observer(builder: (_) {
+                          return Container(
+                              height: 50,
+                              padding:
+                                  const EdgeInsets.only(top: 10, bottom: 10),
+                              child: Observer(builder: (_) {
+                                return ElevatedButton(
+                                  onPressed: () {
+                                    if (!store.client.isEmpty) {
+                                      Modular.to.navigate('/contact/',
+                                          arguments: (store.client.totalPrice)
+                                              .toString());
+                                    } else {
+                                      Snackbar.showSnackBar(
+                                          context, 'Carrinho está vazio.');
+                                    }
+                                  },
+                                  child: Text(
+                                    'Pagamento',
+                                    style: GoogleFonts.cabin(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    elevation: 12,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 70),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                );
+                              }));
+                        })
                       ],
-                    ),
-                    const SizedBox(height: 12.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          'Total Cost:',
-                          style: GoogleFonts.cabin(
-                              fontSize: 17, fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          '\$${store.client.totalPrice.toStringAsFixed(2)}',
-                          style: GoogleFonts.cabin(
-                              fontSize: 17,
-                              color: Colors.green.shade700,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20.0),
-                    Container(
-                      height: 50,
-                      padding: const EdgeInsets.only(top: 10, bottom: 10),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // if (!store.client.isEmpty) {
-                          //   Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //           builder: (context) => ContactScreen(
-                          //               amount: (totalPrice + 1)
-                          //                   .toInt()
-                          //                   .toString())));
-                          // } else {
-                          //   snackBar.showSnackBar(context, 'Cart is empty');
-                          // }
-                        },
-                        child: Text(
-                          'Payment',
-                          style: GoogleFonts.cabin(
-                              fontSize: 17, fontWeight: FontWeight.w600),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          elevation: 12,
-                          padding: const EdgeInsets.symmetric(horizontal: 70),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+                    );
+                  })),
             ),
           ],
         ),

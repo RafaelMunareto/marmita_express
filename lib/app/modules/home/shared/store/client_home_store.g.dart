@@ -57,6 +57,22 @@ mixin _$ClientHomeStore on _ClientHomeStoreBase, Store {
     });
   }
 
+  late final _$filteredCartsAtom =
+      Atom(name: '_ClientHomeStoreBase.filteredCarts', context: context);
+
+  @override
+  List<Carts> get filteredCarts {
+    _$filteredCartsAtom.reportRead();
+    return super.filteredCarts;
+  }
+
+  @override
+  set filteredCarts(List<Carts> value) {
+    _$filteredCartsAtom.reportWrite(value, super.filteredCarts, () {
+      super.filteredCarts = value;
+    });
+  }
+
   late final _$_ClientHomeStoreBaseActionController =
       ActionController(name: '_ClientHomeStoreBase', context: context);
 
@@ -94,11 +110,23 @@ mixin _$ClientHomeStore on _ClientHomeStoreBase, Store {
   }
 
   @override
+  dynamic setFilteredCarts(dynamic value) {
+    final _$actionInfo = _$_ClientHomeStoreBaseActionController.startAction(
+        name: '_ClientHomeStoreBase.setFilteredCarts');
+    try {
+      return super.setFilteredCarts(value);
+    } finally {
+      _$_ClientHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 len: ${len},
 totalPrice: ${totalPrice},
-cartsList: ${cartsList}
+cartsList: ${cartsList},
+filteredCarts: ${filteredCarts}
     ''';
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marmita_express/app/shared/utils/utils/themes/theme_preferences.dart';
+import 'package:marmita_express/app/shared/utils/reutilizaveis/themes/theme_preferences.dart';
 
 class ThemeModel extends ChangeNotifier {
   bool? _isDark;

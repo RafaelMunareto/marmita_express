@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marmita_express/app/modules/home/home_store.dart';
+import 'package:marmita_express/app/modules/home/shared/widgets/all_restaurant_widget.dart';
 import 'package:marmita_express/app/modules/home/shared/widgets/nearby_restaurants.dart';
 import 'package:marmita_express/app/modules/home/shared/widgets/popular_items.dart';
 import 'package:marmita_express/app/modules/home/shared/widgets/search_widget.dart';
@@ -93,16 +94,24 @@ class HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          Expanded(
-            child: ListView(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              children: const [
-                PopularItems(),
-                NearbyRestaurants(),
-              ],
-            ),
-          ),
+          Observer(builder: (_) {
+            return Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  store.client.textSearch != ''
+                      ? AllRestaurantWidget()
+                      : const Column(
+                          children: [
+                            PopularItems(),
+                            NearbyRestaurants(),
+                          ],
+                        )
+                ],
+              ),
+            );
+          }),
         ],
       ),
     );

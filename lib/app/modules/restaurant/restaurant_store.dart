@@ -38,7 +38,9 @@ abstract class RestaurantStoreBase with Store {
         print('cart inserted. $value');
       }
     }).onError((error, stackTrace) {
-      print('error: ' + error.toString());
+      if (kDebugMode) {
+        print('error: ' + error.toString());
+      }
     });
     loadData();
   }

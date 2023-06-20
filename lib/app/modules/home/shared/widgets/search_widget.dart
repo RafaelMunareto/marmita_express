@@ -22,6 +22,7 @@ class SearchWidget extends StatelessWidget {
         child: TextFormField(
           controller: store.searchController,
           style: const TextStyle(color: Colors.white, fontSize: 14),
+          onChanged: (value) => store.filterRestaurants(),
           decoration: InputDecoration(
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15),

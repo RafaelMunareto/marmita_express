@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marmita_express/app/modules/home/shared/store/client_home_store.dart';
+import 'package:marmita_express/app/shared/utils/data/data.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../shared/utils/database/db_helper.dart';
@@ -28,7 +29,6 @@ abstract class HomeStoreBase with Store {
     for (var order in carts) {
       newTotalPrice += order.price * order.quantity;
     }
-
     client.setTotalPrice(newTotalPrice);
     client.setCartList(carts);
   }
@@ -51,5 +51,14 @@ abstract class HomeStoreBase with Store {
         print('error: ' + error.toString());
       }
     });
+  }
+
+  void filterRestaurants() {
+    client.setTextSearch(searchController.text);
+    client.setFilteredRestaurants(restaurants
+        .where((restaurant) => restaurant.name!
+            .toLowerCase()
+            .contains(client.textSearch.toLowerCase()))
+        .toList());
   }
 }

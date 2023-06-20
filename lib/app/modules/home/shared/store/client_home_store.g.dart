@@ -73,6 +73,38 @@ mixin _$ClientHomeStore on _ClientHomeStoreBase, Store {
     });
   }
 
+  late final _$filteredRestaurantsAtom =
+      Atom(name: '_ClientHomeStoreBase.filteredRestaurants', context: context);
+
+  @override
+  List<Restaurant> get filteredRestaurants {
+    _$filteredRestaurantsAtom.reportRead();
+    return super.filteredRestaurants;
+  }
+
+  @override
+  set filteredRestaurants(List<Restaurant> value) {
+    _$filteredRestaurantsAtom.reportWrite(value, super.filteredRestaurants, () {
+      super.filteredRestaurants = value;
+    });
+  }
+
+  late final _$textSearchAtom =
+      Atom(name: '_ClientHomeStoreBase.textSearch', context: context);
+
+  @override
+  String get textSearch {
+    _$textSearchAtom.reportRead();
+    return super.textSearch;
+  }
+
+  @override
+  set textSearch(String value) {
+    _$textSearchAtom.reportWrite(value, super.textSearch, () {
+      super.textSearch = value;
+    });
+  }
+
   late final _$_ClientHomeStoreBaseActionController =
       ActionController(name: '_ClientHomeStoreBase', context: context);
 
@@ -121,12 +153,36 @@ mixin _$ClientHomeStore on _ClientHomeStoreBase, Store {
   }
 
   @override
+  dynamic setFilteredRestaurants(dynamic value) {
+    final _$actionInfo = _$_ClientHomeStoreBaseActionController.startAction(
+        name: '_ClientHomeStoreBase.setFilteredRestaurants');
+    try {
+      return super.setFilteredRestaurants(value);
+    } finally {
+      _$_ClientHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setTextSearch(dynamic value) {
+    final _$actionInfo = _$_ClientHomeStoreBaseActionController.startAction(
+        name: '_ClientHomeStoreBase.setTextSearch');
+    try {
+      return super.setTextSearch(value);
+    } finally {
+      _$_ClientHomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 len: ${len},
 totalPrice: ${totalPrice},
 cartsList: ${cartsList},
-filteredCarts: ${filteredCarts}
+filteredCarts: ${filteredCarts},
+filteredRestaurants: ${filteredRestaurants},
+textSearch: ${textSearch}
     ''';
   }
 }

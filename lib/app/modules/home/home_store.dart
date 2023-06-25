@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marmita_express/app/modules/home/shared/store/client_home_store.dart';
+import 'package:marmita_express/app/shared/store/client_store.dart';
 import 'package:marmita_express/app/shared/utils/data/data.dart';
+import 'package:marmita_express/app/shared/utils/database/db_helper.dart';
+import 'package:marmita_express/app/shared/utils/database/db_model.dart';
 import 'package:mobx/mobx.dart';
-
-import '../../shared/utils/database/db_helper.dart';
-import '../../shared/utils/database/db_model.dart';
 
 part 'home_store.g.dart';
 
@@ -15,7 +14,7 @@ class HomeStore = HomeStoreBase with _$HomeStore;
 abstract class HomeStoreBase with Store {
   DatabaseHelper databaseHelper = DatabaseHelper();
   TextEditingController searchController = TextEditingController();
-  ClientHomeStore client = Modular.get();
+  ClientStore client = Modular.get();
 
   HomeStoreBase() {
     loadData();

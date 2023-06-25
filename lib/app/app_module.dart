@@ -1,3 +1,4 @@
+import 'package:marmita_express/app/shared/store/client_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marmita_express/app/modules/cart/cart_module.dart';
 import 'package:marmita_express/app/modules/contact/contact_module.dart';
@@ -12,6 +13,7 @@ import 'modules/home/home_module.dart';
 class AppModule extends Module {
   @override
   final List<Bind> binds = [
+    Bind.singleton((i) => ClientStore()),
     Bind.singleton<ILocalStorage>((i) => LocalStorageShare()),
   ];
 

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marmita_express/app/modules/contact/shared/store/client_contact_store.dart';
+import 'package:marmita_express/app/shared/store/client_store.dart';
 import 'package:marmita_express/app/shared/utils/model/user_info.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,7 +14,7 @@ abstract class ContactStoreBase with Store {
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
-  ClientContactStore client = Modular.get();
+  ClientStore client = Modular.get();
   late SharedPreferences _prefs;
 
   ContactStoreBase() {

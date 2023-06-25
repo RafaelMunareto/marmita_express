@@ -23,17 +23,17 @@ Future<void> makePayment(
     List<Carts> carts,
     PaymentStore store) async {
   try {
-    paymentIntentData = await createPaymentIntent(amount, 'USD');
+    // paymentIntentData = await createPaymentIntent(amount, 'RS');
 
-    await Stripe.instance
-        .initPaymentSheet(
-            paymentSheetParameters: SetupPaymentSheetParameters(
-                setupIntentClientSecret: '{secret-key}',
-                paymentIntentClientSecret: paymentIntentData!['client_secret'],
-                customFlow: true,
-                style: ThemeMode.dark,
-                merchantDisplayName: 'Basit'))
-        .then((value) {});
+    // await Stripe.instance
+    //     .initPaymentSheet(
+    //         paymentSheetParameters: SetupPaymentSheetParameters(
+    //             setupIntentClientSecret: '{secret-key}',
+    //             paymentIntentClientSecret: paymentIntentData!['client_secret'],
+    //             customFlow: true,
+    //             style: ThemeMode.dark,
+    //             merchantDisplayName: 'Basit'))
+    //     .then((value) {});
 
     displayPaymentSheet(context, title, desc, alertType, payConfirm,
         databaseHelper, carts, store);

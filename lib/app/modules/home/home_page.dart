@@ -7,6 +7,7 @@ import 'package:marmita_express/app/modules/home/shared/widgets/all_restaurant_w
 import 'package:marmita_express/app/modules/home/shared/widgets/nearby_restaurants.dart';
 import 'package:marmita_express/app/modules/home/shared/widgets/popular_items.dart';
 import 'package:marmita_express/app/modules/home/shared/widgets/search_widget.dart';
+import 'package:marmita_express/app/shared/widgets/bottom_navigate_widget.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -21,6 +22,7 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const BottomNavigateWidget(),
       resizeToAvoidBottomInset: false,
       body: Column(
         children: [
@@ -46,42 +48,6 @@ class HomePageState extends State<HomePage> {
                           Text('Marmita Express',
                               style: GoogleFonts.lobster(
                                   fontSize: 25, color: Colors.white)),
-                          GestureDetector(
-                            onTap: () => Modular.to.navigate('/cart/'),
-                            child: Container(
-                              height: 30,
-                              width: 56,
-                              decoration: BoxDecoration(
-                                  color: const Color(0xFF86DE29),
-                                  borderRadius: BorderRadius.circular(8)),
-                              child: Observer(builder: (_) {
-                                return store.client.len != 0
-                                    ? Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          const Icon(
-                                            Icons.shopping_cart_outlined,
-                                            size: 22,
-                                          ),
-                                          CircleAvatar(
-                                            radius: 9,
-                                            backgroundColor: Colors.black,
-                                            child: Text(
-                                              store.client.len.toString(),
-                                              style:
-                                                  const TextStyle(fontSize: 11),
-                                            ),
-                                          )
-                                        ],
-                                      )
-                                    : const Icon(
-                                        Icons.shopping_cart_outlined,
-                                        size: 25,
-                                      );
-                              }),
-                            ),
-                          )
                         ],
                       ),
                     ),

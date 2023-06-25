@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marmita_express/app/modules/restaurant/shared/client_restaurant_store.dart';
+import 'package:marmita_express/app/shared/store/client_store.dart';
 import 'package:marmita_express/app/shared/utils/database/db_helper.dart';
 import 'package:marmita_express/app/shared/utils/database/db_model.dart';
 import 'package:mobx/mobx.dart';
@@ -11,7 +11,7 @@ class RestaurantStore = RestaurantStoreBase with _$RestaurantStore;
 
 abstract class RestaurantStoreBase with Store {
   DatabaseHelper databaseHelper = DatabaseHelper();
-  ClientRestaurantStore client = Modular.get();
+  ClientStore client = Modular.get();
 
   RestaurantStoreBase() {
     loadData();

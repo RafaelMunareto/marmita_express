@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marmita_express/app/modules/cart/shared/store/client_cart_store.dart';
+import 'package:marmita_express/app/shared/store/client_store.dart';
 import 'package:marmita_express/app/shared/utils/database/db_helper.dart';
 import 'package:marmita_express/app/shared/utils/database/db_model.dart';
 import 'package:mobx/mobx.dart';
@@ -11,7 +11,7 @@ class CartStore = CartStoreBase with _$CartStore;
 abstract class CartStoreBase with Store {
   DatabaseHelper databaseHelper = DatabaseHelper();
   late Future<List<Carts>> cartsList;
-  ClientCartStore client = Modular.get();
+  ClientStore client = Modular.get();
 
   CartStoreBase() {
     loadData();

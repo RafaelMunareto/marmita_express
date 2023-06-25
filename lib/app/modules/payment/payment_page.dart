@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:marmita_express/app/modules/payment/payment_store.dart';
 import 'package:marmita_express/app/modules/payment/shared/util/alert_dialog.dart';
 import 'package:marmita_express/app/modules/payment/shared/util/striped_payment.dart';
-import 'package:marmita_express/app/shared/utils/reutilizaveis/animated_button.dart';
+import 'package:marmita_express/app/shared/utils/others/animated_button.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class PaymentPage extends StatefulWidget {

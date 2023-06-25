@@ -47,6 +47,12 @@ class LocalStorageShare implements ILocalStorage {
   }
 
   @override
+  Future putSimple(String key, List<String> value) async {
+    var shared = await _instance.future;
+    shared.setStringList(key, value);
+  }
+
+  @override
   Future putObject(String key, String value) async {
     var shared = await _instance.future;
     shared.setString(key, value);

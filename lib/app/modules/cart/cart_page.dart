@@ -5,7 +5,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marmita_express/app/modules/cart/cart_store.dart';
 import 'package:marmita_express/app/shared/utils/database/db_model.dart';
-import 'package:marmita_express/app/shared/utils/reutilizaveis/snackbar.dart';
+import 'package:marmita_express/app/shared/utils/others/snackbar.dart';
+import 'package:marmita_express/app/shared/widgets/bottom_navigate_widget.dart';
+import 'package:marmita_express/app/shared/widgets/drawer_widget.dart';
 
 class CartPage extends StatefulWidget {
   final String title;
@@ -16,9 +18,17 @@ class CartPage extends StatefulWidget {
 
 class CartPageState extends State<CartPage> {
   CartStore store = Modular.get();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigateWidget(
+        scaffoldKey: _scaffoldKey,
+      ),
+      key: _scaffoldKey,
+      drawer: const DrawerWidget(),
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Column(
           children: [

@@ -15,6 +15,7 @@ class ContactModule extends Module {
       child: (context, args) => ContactPage(
         amount: args.data,
       ),
+      transition: TransitionType.fadeIn,
     ),
   ];
 }

@@ -1,7 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:flutter/material.dart';
-import 'package:marmita_express/app/shared/utils/reutilizaveis/themes/theme.dart';
+import 'package:marmita_express/app/shared/utils/others/themes/theme.dart';
 
 import 'largura_layout_builder.dart';
 

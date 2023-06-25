@@ -4,9 +4,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marmita_express/app/shared/store/client_store.dart';
 
 class BottomNavigateWidget extends StatefulWidget {
-  const BottomNavigateWidget({
-    Key? key,
-  }) : super(key: key);
+  final GlobalKey<ScaffoldState> scaffoldKey;
+  const BottomNavigateWidget({Key? key, required this.scaffoldKey})
+      : super(key: key);
 
   @override
   State<BottomNavigateWidget> createState() => _BottomNavigateWidgetState();
@@ -16,18 +16,21 @@ class _BottomNavigateWidgetState extends State<BottomNavigateWidget> {
   ClientStore client = Modular.get();
 
   void _onItemTapped(int index) async {
-    await client.setBottomNavigateIndex(index);
-    switch (client.bottomNavigateIndex) {
+    if (index != 3) {
+      await client.setBottomNavigateIndex(index);
+    }
+    switch (index) {
       case 0:
         Modular.to.navigate('/home/');
         break;
       case 1:
-        Modular.to.navigate('/contact');
+        Modular.to.navigate('/contact/', arguments: '');
         break;
       case 2:
-        Modular.to.navigate('/cart');
+        Modular.to.navigate('/cart/');
         break;
       case 3:
+        widget.scaffoldKey.currentState?.openDrawer();
         break;
       default:
         Modular.to.pop();
@@ -39,6 +42,7 @@ class _BottomNavigateWidgetState extends State<BottomNavigateWidget> {
     return Observer(builder: (_) {
       return SizedBox(
         child: BottomNavigationBar(
+          useLegacyColorScheme: false,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(
@@ -51,14 +55,10 @@ class _BottomNavigateWidgetState extends State<BottomNavigateWidget> {
             BottomNavigationBarItem(
               icon: SizedBox(
                 width: 40,
-                child: Row(
-                  children: [
-                    Icon(Icons.people_alt,
-                        color: client.bottomNavigateIndex == 1
-                            ? Colors.blue
-                            : Colors.grey),
-                  ],
-                ),
+                child: Icon(Icons.people_alt,
+                    color: client.bottomNavigateIndex == 1
+                        ? Colors.blue
+                        : Colors.grey),
               ),
               label: '',
             ),
@@ -82,7 +82,7 @@ class _BottomNavigateWidgetState extends State<BottomNavigateWidget> {
               ),
               label: '',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(
                 Icons.menu,
               ),

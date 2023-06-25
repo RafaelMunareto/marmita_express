@@ -13,7 +13,7 @@ class CartModule extends Module {
     ChildRoute(
       Modular.initialRoute,
       child: (context, args) => const CartPage(),
-      transition: TransitionType.rightToLeftWithFade,
+      transition: TransitionType.fadeIn,
     ),
   ];
 }

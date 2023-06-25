@@ -8,6 +8,7 @@ import 'package:marmita_express/app/modules/home/shared/widgets/nearby_restauran
 import 'package:marmita_express/app/modules/home/shared/widgets/popular_items.dart';
 import 'package:marmita_express/app/modules/home/shared/widgets/search_widget.dart';
 import 'package:marmita_express/app/shared/widgets/bottom_navigate_widget.dart';
+import 'package:marmita_express/app/shared/widgets/drawer_widget.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -18,11 +19,16 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   HomeStore store = Modular.get();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const BottomNavigateWidget(),
+      key: _scaffoldKey,
+      drawer: const DrawerWidget(),
+      bottomNavigationBar: BottomNavigateWidget(
+        scaffoldKey: _scaffoldKey,
+      ),
       resizeToAvoidBottomInset: false,
       body: Column(
         children: [

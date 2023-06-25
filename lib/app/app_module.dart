@@ -5,6 +5,8 @@ import 'package:marmita_express/app/modules/contact/contact_module.dart';
 import 'package:marmita_express/app/modules/payment/payment_module.dart';
 import 'package:marmita_express/app/modules/restaurant/restaurant_module.dart';
 import 'package:marmita_express/app/shared/utils/pages/splash_page.dart';
+import 'package:marmita_express/app/shared/utils/repositories/auth/auth_repository.dart';
+import 'package:marmita_express/app/shared/utils/repositories/auth/auth_repository_interface.dart';
 import 'package:marmita_express/app/shared/utils/repositories/localstorage/local_storage_interface.dart';
 import 'package:marmita_express/app/shared/utils/repositories/localstorage/local_storage_share.dart';
 
@@ -15,14 +17,13 @@ class AppModule extends Module {
   final List<Bind> binds = [
     Bind.singleton((i) => ClientStore()),
     Bind.singleton<ILocalStorage>((i) => LocalStorageShare()),
+    Bind.singleton<IAuthRepository>((i) => AuthRepository()),
   ];
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(
-      Modular.initialRoute,
-      child: (context, args) => const SplashPage(),
-    ),
+    ChildRoute(Modular.initialRoute,
+        child: (context, args) => const SplashPage()),
     ModuleRoute('/home', module: HomeModule()),
     ModuleRoute('/cart', module: CartModule()),
     ModuleRoute('/contact', module: ContactModule()),

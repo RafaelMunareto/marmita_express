@@ -13,7 +13,7 @@ class HomeModule extends Module {
     ChildRoute(
       Modular.initialRoute,
       child: (context, args) => const HomePage(),
-      transition: TransitionType.rightToLeftWithFade,
+      transition: TransitionType.fadeIn,
     ),
   ];
 }

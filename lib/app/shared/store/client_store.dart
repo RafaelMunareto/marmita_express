@@ -99,4 +99,10 @@ abstract class _ClientStoreBase with Store {
 
   @observable
   var q = 0;
+
+  @observable
+  bool theme = false;
+
+  @action
+  setTheme(value) => theme = value;
 }

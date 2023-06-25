@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marmita_express/app/shared/utils/repositories/localstorage/local_storage_interface.dart';
-import 'package:marmita_express/app/shared/utils/repositories/localstorage/local_storage_share.dart';
-import 'package:marmita_express/app/shared/utils/reutilizaveis/themes/theme.dart';
+import 'package:marmita_express/app/shared/utils/repositories/auth/auth_repository_interface.dart';
+import 'package:marmita_express/app/shared/utils/others/themes/theme.dart';
 
 class AppWidget extends StatefulWidget {
   @override
@@ -16,20 +15,14 @@ class AppWidget extends StatefulWidget {
 
 class _AppWidgetState extends State<AppWidget> {
   ThemeMode _themeMode = ThemeMode.system;
-  final ILocalStorage theme = LocalStorageShare();
+  final IAuthRepository auth = Modular.get();
   late String darkLight = '';
   bool isDark = false;
 
   buscaStorage() async {
-    await theme.get('theme').then((value) {
+    await auth.getTheme().then((value) {
       setState(() {
-        if (value != null) {
-          if (value.isNotEmpty) {
-            value?[0] == 'dark'
-                ? _themeMode = ThemeMode.dark
-                : _themeMode = ThemeMode.light;
-          }
-        }
+        value ? _themeMode = ThemeMode.dark : _themeMode = ThemeMode.light;
       });
     });
   }

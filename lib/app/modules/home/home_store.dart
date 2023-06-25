@@ -5,6 +5,7 @@ import 'package:marmita_express/app/shared/store/client_store.dart';
 import 'package:marmita_express/app/shared/utils/data/data.dart';
 import 'package:marmita_express/app/shared/utils/database/db_helper.dart';
 import 'package:marmita_express/app/shared/utils/database/db_model.dart';
+import 'package:marmita_express/app/shared/utils/repositories/auth/auth_repository_interface.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_store.g.dart';
@@ -15,9 +16,15 @@ abstract class HomeStoreBase with Store {
   DatabaseHelper databaseHelper = DatabaseHelper();
   TextEditingController searchController = TextEditingController();
   ClientStore client = Modular.get();
+  IAuthRepository auth = Modular.get();
 
   HomeStoreBase() {
+    getTheme();
     loadData();
+  }
+
+  getTheme() {
+    auth.getTheme().then((value) => client.setTheme(value));
   }
 
   loadData() async {

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marmita_express/app/shared/store/client_store.dart';
 import 'package:marmita_express/app/shared/utils/model/user_info.dart';
+import 'package:marmita_express/app/shared/utils/repositories/auth/auth_repository_interface.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,10 +16,16 @@ abstract class ContactStoreBase with Store {
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   ClientStore client = Modular.get();
+  IAuthRepository auth = Modular.get();
   late SharedPreferences _prefs;
 
   ContactStoreBase() {
+    getTheme();
     loadUserInfo();
+  }
+
+  getTheme() {
+    auth.getTheme().then((value) => client.setTheme(value));
   }
 
   loadUserInfo() async {

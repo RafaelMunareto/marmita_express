@@ -15,6 +15,7 @@ class PaymentModule extends Module {
       child: (context, args) => PaymentPage(
         amount: args.data,
       ),
+      transition: TransitionType.fadeIn,
     ),
   ];
 }

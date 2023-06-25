@@ -4,6 +4,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marmita_express/app/modules/contact/contact_store.dart';
 import 'package:marmita_express/app/modules/contact/shared/widgets/contact_widget.dart';
+import 'package:marmita_express/app/shared/widgets/bottom_navigate_widget.dart';
+import 'package:marmita_express/app/shared/widgets/drawer_widget.dart';
 
 class ContactPage extends StatefulWidget {
   final String amount;
@@ -14,10 +16,16 @@ class ContactPage extends StatefulWidget {
 
 class ContactPageState extends State<ContactPage> {
   ContactStore store = Modular.get();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigateWidget(
+        scaffoldKey: _scaffoldKey,
+      ),
+      drawer: const DrawerWidget(),
+      key: _scaffoldKey,
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: WillPopScope(

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marmita_express/app/app_widget.dart';
-import 'package:marmita_express/app/shared/utils/repositories/localstorage/local_storage_interface.dart';
-import 'package:marmita_express/app/shared/utils/repositories/localstorage/local_storage_share.dart';
+import 'package:marmita_express/app/shared/utils/repositories/auth/auth_repository_interface.dart';
 
 class SplashPage extends StatefulWidget {
   final String title;
@@ -13,19 +12,17 @@ class SplashPage extends StatefulWidget {
 }
 
 class SplashPageState extends State<SplashPage> {
-  ILocalStorage storage = LocalStorageShare();
+  IAuthRepository auth = Modular.get();
   bool lightMode = false;
 
   @override
   void initState() {
-    storage.get('theme').then((value) {
-      if (value != null) {
-        lightMode = value;
-        WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
-              AppWidget.of(context)
-                  ?.changeTheme(value ? ThemeMode.dark : ThemeMode.light);
-            }));
-      }
+    auth.getTheme().then((value) {
+      lightMode = value;
+      WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
+            AppWidget.of(context)
+                ?.changeTheme(value ? ThemeMode.dark : ThemeMode.light);
+          }));
     }).whenComplete(() async {
       await Future.delayed(
           const Duration(seconds: 2), () => Modular.to.navigate('/home/'));

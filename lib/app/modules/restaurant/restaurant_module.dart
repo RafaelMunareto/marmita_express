@@ -10,7 +10,10 @@ class RestaurantModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(Modular.initialRoute,
-        child: (context, args) => RestaurantPage(restaurant: args.data))
+    ChildRoute(
+      Modular.initialRoute,
+      child: (context, args) => RestaurantPage(restaurant: args.data),
+      transition: TransitionType.fadeIn,
+    )
   ];
 }
